@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* COMO UTILIZAR O TAILWIND FORA DO HTML
+.button{
+    @apply bg-purple-700 text-white p-2;
+}
+*/
