@@ -6,6 +6,7 @@ import thoughtImageUrl from "../../assets/thought.svg"
 
 import { useState } from "react";
 import { FeedBackTypeStep } from "./Steps/FeedBackTypeStep";
+import { FeedBackContentStep } from "./Steps/FeedBackContentStep";
 
 export const feedBackTypes = {
     BUG: {
@@ -17,7 +18,7 @@ export const feedBackTypes = {
     },
 
     IDEA: {
-        title: "Idea",
+        title: "Ideia",
         image: {
             src: ideaImageUrl,
             alt: "Imagem de uma lâmpada",
@@ -47,25 +48,25 @@ export function WidgetForm() {
 
     const [feedBackType, setFeedBackType] = useState<FeedBackType | null>(null);
 
+    function handleRestartFeedBack() {
+        setFeedBackType(null);
+    }
+
     return (
         <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto">
-            <header>
-                <span className="text-xl leading-6">
-                    Deixe seu Feedback
-                </span>
-
-                <CloseButton />
-            </header>
 
             {!feedBackType ? (
                 <FeedBackTypeStep onFeedBackTypeChanged = {setFeedBackType} />  //ENVIA AO COMPONENT FILHO (FeedBackTypeStep) A FUNÇÃO setFeedBackType
             ) : (
-                <p>Hello World</p>
+                <FeedBackContentStep 
+                    feedBackType = {feedBackType}
+                    onFeedBackRestartRequest = { handleRestartFeedBack }
+                 />
             )}
 
             <footer className="text-xs text-neutral-400 flex gap-1">
                 <p>Feito com ♥ por </p>
-                <a className="underline underline-offset-2" href="https://github.com/Zerfilos">Thiago</a>
+                <a className="underline underline-offset-2" href="https://github.com/Zerfilos" target="_blank">Thiago</a>
             </footer>
         </div>
     )
